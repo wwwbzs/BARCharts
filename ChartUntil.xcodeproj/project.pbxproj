@@ -18,6 +18,8 @@
 		1CC752A7238B97EA005A19C3 /* ChartUntilUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CC752A6238B97EA005A19C3 /* ChartUntilUITests.m */; };
 		1CC752BA238B9888005A19C3 /* BarGridLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CC752B9238B9888005A19C3 /* BarGridLayer.m */; };
 		1CC752BD238BA365005A19C3 /* BarLineChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CC752BC238BA365005A19C3 /* BarLineChart.m */; };
+		1CC752C0238BB7AF005A19C3 /* BarLineChartData.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CC752BF238BB7AF005A19C3 /* BarLineChartData.m */; };
+		1CC752C4238BB7E6005A19C3 /* BarLineChartDataItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CC752C3238BB7E6005A19C3 /* BarLineChartDataItem.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +62,10 @@
 		1CC752B9238B9888005A19C3 /* BarGridLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BarGridLayer.m; sourceTree = "<group>"; };
 		1CC752BB238BA365005A19C3 /* BarLineChart.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BarLineChart.h; sourceTree = "<group>"; };
 		1CC752BC238BA365005A19C3 /* BarLineChart.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BarLineChart.m; sourceTree = "<group>"; };
+		1CC752BE238BB7AF005A19C3 /* BarLineChartData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BarLineChartData.h; sourceTree = "<group>"; };
+		1CC752BF238BB7AF005A19C3 /* BarLineChartData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BarLineChartData.m; sourceTree = "<group>"; };
+		1CC752C2238BB7E6005A19C3 /* BarLineChartDataItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BarLineChartDataItem.h; sourceTree = "<group>"; };
+		1CC752C3238BB7E6005A19C3 /* BarLineChartDataItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BarLineChartDataItem.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,8 +157,20 @@
 				1CC752B9238B9888005A19C3 /* BarGridLayer.m */,
 				1CC752BB238BA365005A19C3 /* BarLineChart.h */,
 				1CC752BC238BA365005A19C3 /* BarLineChart.m */,
+				1CC752BE238BB7AF005A19C3 /* BarLineChartData.h */,
+				1CC752BF238BB7AF005A19C3 /* BarLineChartData.m */,
+				1CC752C2238BB7E6005A19C3 /* BarLineChartDataItem.h */,
+				1CC752C3238BB7E6005A19C3 /* BarLineChartDataItem.m */,
+				1CC752C1238BB7BB005A19C3 /* New Group */,
 			);
 			path = Chart;
+			sourceTree = "<group>";
+		};
+		1CC752C1238BB7BB005A19C3 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -287,9 +305,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				1CC752BA238B9888005A19C3 /* BarGridLayer.m in Sources */,
+				1CC752C4238BB7E6005A19C3 /* BarLineChartDataItem.m in Sources */,
 				1CC75287238B97E5005A19C3 /* ViewController.m in Sources */,
 				1CC752BD238BA365005A19C3 /* BarLineChart.m in Sources */,
 				1CC75281238B97E5005A19C3 /* AppDelegate.m in Sources */,
+				1CC752C0238BB7AF005A19C3 /* BarLineChartData.m in Sources */,
 				1CC75292238B97E9005A19C3 /* main.m in Sources */,
 				1CC75284238B97E5005A19C3 /* SceneDelegate.m in Sources */,
 			);
