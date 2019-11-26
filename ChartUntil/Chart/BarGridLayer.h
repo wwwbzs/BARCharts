@@ -7,6 +7,7 @@
 //
 
 #import <QuartzCore/QuartzCore.h>
+#import "BarLineChart.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -15,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) NSInteger horizontalCount;
 @property (nonatomic, assign) NSInteger verticalCount;
 @property (nonatomic, assign) CGFloat gridWidth;
+@property (nonatomic, strong) BarLineChart *lineChart;
 
 @property (nonatomic, assign) CGColorRef  _Nonnull gridColor;
 - (void)strokeGrid;

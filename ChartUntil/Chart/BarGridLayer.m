@@ -28,7 +28,7 @@
 
 - (void)defalutConfi{
     self.gridColor = UIColor.blackColor.CGColor;
-    self.gridWidth = 1;
+    self.gridWidth = 0.5;
     self.horizontalCount = self.verticalCount = 5;
 //    [self strokeGrid];
 }
@@ -45,7 +45,7 @@
     CGFloat width = self.frame.size.width;
     CGFloat height = self.frame.size.height;
     CGFloat yStepHeight = (height - (self.horizontalCount + 1) * self.gridWidth) / self.horizontalCount;
-    CGFloat xStepWidth = width / self.verticalCount;
+    CGFloat xStepWidth = (width - (self.verticalCount +1)*self.gridWidth) / self.verticalCount;
     for (int i = 0; i < self.horizontalCount+1; i++) {
         CALayer *layer = [CALayer layer];
         layer.frame = CGRectMake(0, i * (yStepHeight + self.gridWidth), width, self.gridWidth);
@@ -56,11 +56,14 @@
     
     for (int i = 0; i < self.verticalCount+1; i++) {
         CALayer *layer = [CALayer layer];
-        layer.frame = CGRectMake(i * xStepWidth, 0, self.gridWidth, height);
+        layer.frame = CGRectMake(i * (xStepWidth+self.gridWidth), 0, self.gridWidth, height);
         layer.backgroundColor = self.gridColor;
         [self addSublayer:layer];
         [self.yLayers addObject:layer];
     }
+    self.lineChart.frame = self.bounds;
+    [self.lineChart strokeChart];
+    [self addSublayer:self.lineChart];
 }
 
 @end
