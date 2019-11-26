@@ -20,6 +20,7 @@
 		1CC752BD238BA365005A19C3 /* BarLineChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CC752BC238BA365005A19C3 /* BarLineChart.m */; };
 		1CC752C0238BB7AF005A19C3 /* BarLineChartData.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CC752BF238BB7AF005A19C3 /* BarLineChartData.m */; };
 		1CC752C4238BB7E6005A19C3 /* BarLineChartDataItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CC752C3238BB7E6005A19C3 /* BarLineChartDataItem.m */; };
+		45D7A965238BDE2D009093C8 /* BarLineChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 45D7A964238BDE2D009093C8 /* BarLineChartView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,8 @@
 		1CC752BF238BB7AF005A19C3 /* BarLineChartData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BarLineChartData.m; sourceTree = "<group>"; };
 		1CC752C2238BB7E6005A19C3 /* BarLineChartDataItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BarLineChartDataItem.h; sourceTree = "<group>"; };
 		1CC752C3238BB7E6005A19C3 /* BarLineChartDataItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BarLineChartDataItem.m; sourceTree = "<group>"; };
+		45D7A963238BDE2D009093C8 /* BarLineChartView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BarLineChartView.h; sourceTree = "<group>"; };
+		45D7A964238BDE2D009093C8 /* BarLineChartView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BarLineChartView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +165,8 @@
 				1CC752C2238BB7E6005A19C3 /* BarLineChartDataItem.h */,
 				1CC752C3238BB7E6005A19C3 /* BarLineChartDataItem.m */,
 				1CC752C1238BB7BB005A19C3 /* New Group */,
+				45D7A963238BDE2D009093C8 /* BarLineChartView.h */,
+				45D7A964238BDE2D009093C8 /* BarLineChartView.m */,
 			);
 			path = Chart;
 			sourceTree = "<group>";
@@ -311,6 +316,7 @@
 				1CC75281238B97E5005A19C3 /* AppDelegate.m in Sources */,
 				1CC752C0238BB7AF005A19C3 /* BarLineChartData.m in Sources */,
 				1CC75292238B97E9005A19C3 /* main.m in Sources */,
+				45D7A965238BDE2D009093C8 /* BarLineChartView.m in Sources */,
 				1CC75284238B97E5005A19C3 /* SceneDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

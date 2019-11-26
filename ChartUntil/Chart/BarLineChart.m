@@ -32,8 +32,6 @@
         return;
     }
     BarLineChartDataItem *Item = self.chartData.getData(0);
-//    self.bezierPath = [UIBezierPath bezierPath];
-    NSLog(@"+++%f",Item.x);
     [self.bezierPath moveToPoint:Item.point];
     for (int i = 0; i < num-1; i++) {
         CGPoint p1 = self.chartData.getData(i).point;
@@ -42,10 +40,7 @@
         CGPoint midPoint = [BarLineChart midPointBetweenPoint1:p1 andPoint2:p2];
         [self.bezierPath addQuadCurveToPoint:midPoint controlPoint:[BarLineChart controlPointBetweenPoint1:midPoint andPoint2:p1]];
         [self.bezierPath addQuadCurveToPoint:p2 controlPoint:[BarLineChart controlPointBetweenPoint1:midPoint andPoint2:p2]];
-//        [self.bezierPath addLineToPoint:p1];
     }
-    
-//    self.lineGradientLayer.mask = self.chartLine;
     self.chartLine.path = self.bezierPath.CGPath;
 }
 
