@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "BarLineChart.h"
 
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface BarLineChartView : UIView
@@ -18,7 +19,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) CGFloat left;
 @property (nonatomic, assign) CGFloat right;
 @property (nonatomic, assign) CGFloat bottom;
-
+@property (nonatomic, strong) UIColor *xColor;
+@property (nonatomic, strong) UIColor *yColor;
 @property (nonatomic, copy) NSArray <BarLineChartDataItem*>*dataSource;
 
 - (void)strokedLayer;

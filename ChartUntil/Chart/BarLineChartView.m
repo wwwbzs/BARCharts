@@ -9,6 +9,7 @@
 #import "BarLineChartView.h"
 #import "BarLineChart.h"
 #import "BarGridLayer.h"
+#import <Masonry/Masonry.h>
 
 @interface BarLineChartView ()<BarLineChartDataSource>
 
@@ -43,6 +44,7 @@
 }
 
 - (void)scrollLineChart:(UIPanGestureRecognizer *)panGes{
+    
 }
 
 - (void)scaleLineChart:(UIPinchGestureRecognizer *)pinGes{
@@ -87,20 +89,31 @@
     for (int i = 0; i < self.gridLayer.verticalCount+1; i++) {
         UILabel *lb = [UILabel new];
         [self.xLabels addObject:lb];
-        lb.text = @"32332";
+        lb.text = @"32";
+        lb.textColor = self.xColor;
         [self addSubview:lb];
         lb.font = [UIFont systemFontOfSize:10];
         [lb sizeToFit];
         if (i == 0) {
-            lb.frame = CGRectMake(_left, self.frame.size.height - 10, 0, 0);
+//            lb.frame = CGRectMake(_left, self.frame.size.height - 10, 0, 0);
             lb.textAlignment = NSTextAlignmentLeft;
+            [lb mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(@(_left));
+                make.bottom.equalTo(self);
+            }];
         } else if (i == self.gridLayer.horizontalCount){
             lb.textAlignment = NSTextAlignmentRight;
+            [lb mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.right.equalTo(@(_right));
+                make.bottom.equalTo(self);
+            }];
         } else {
-            CGFloat x = i * xStepWidth + _left;
-            CGFloat y = self.frame.size.height - 10;
-            lb.center = CGPointMake(x, y);
+            CGFloat x = i * xStepWidth + _left - self.frame.size.width/2;
             lb.textAlignment = NSTextAlignmentCenter;
+            [lb mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.centerX.equalTo(self.mas_centerX).offset(x);
+                make.bottom.equalTo(self);
+            }];
         }
         
     }
