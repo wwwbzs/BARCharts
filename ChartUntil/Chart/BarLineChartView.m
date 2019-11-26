@@ -49,6 +49,7 @@
 #pragma mark --- stroked
 
 - (void)strokedLayer{
+    
     [self.lineChart strokeChart];
     [self.gridLayer strokeGrid];
 }
