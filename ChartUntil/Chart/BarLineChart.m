@@ -42,6 +42,8 @@
         [self.bezierPath addQuadCurveToPoint:p2 controlPoint:[BarLineChart controlPointBetweenPoint1:midPoint andPoint2:p2]];
     }
     self.chartLine.path = self.bezierPath.CGPath;
+//    [self fillColorWithPath:self.bezierPath.CGPath];
+    [self setNeedsDisplay];
 }
 
 + (CGPoint)midPointBetweenPoint1:(CGPoint)point1 andPoint2:(CGPoint)point2 {
@@ -101,6 +103,63 @@
         _bezierPath = [UIBezierPath bezierPath];
     }
     return _bezierPath;
+}
+
+- (void)drawInContext:(CGContextRef)ctx{
+    [super drawInContext:ctx];
+    [self fillColorWithPath:self.bezierPath.CGPath InContext:ctx];
+}
+
+//颜色渐变
+-(void)fillColorWithPath:(CGPathRef)pathRef InContext:(CGContextRef)ctx
+{
+    
+    CGContextRef context = ctx;
+    CGContextSetStrokeColorWithColor(context, [UIColor colorWithRed:51.0/255.0 green:153/255.0 blue:251/255.0 alpha:1.0].CGColor);
+    CGContextSetLineWidth(context, 2.0);
+    CGMutablePathRef startPath = CGPathCreateMutableCopy(pathRef);
+    CGContextSetShouldAntialias(context, YES);
+    
+    CGPathCloseSubpath(startPath);    //封闭
+    CGContextSaveGState(context);     //Save context for cliping
+    
+    CGContextAddPath(context, startPath);
+    CGContextClip(context);
+    CGPathRelease(startPath);
+    // 创建色彩空间对象
+    CGColorSpaceRef colorSpaceRef = CGColorSpaceCreateDeviceRGB();
+    
+    // 创建起点颜色
+    CGColorRef endColor = CGColorCreate(colorSpaceRef, (CGFloat[]){16/255.0, 45/255.0, 136/255.0, 0.8});
+    CGColorRef midColor = CGColorCreate(colorSpaceRef, (CGFloat[]){17/255.0, 104/255.0, 128/255.0, 0.5});
+    // 创建终点颜色
+    CGColorRef beginColor = CGColorCreate(colorSpaceRef, (CGFloat[]){0.0f, 0.0f, 0.0f, 0.0f});
+    
+    // 创建颜色数组
+    CFArrayRef colorArray = CFArrayCreate(kCFAllocatorDefault, (const void*[]){beginColor,midColor, endColor}, 3, nil);
+    
+    // 创建渐变对象
+    CGGradientRef gradientRef = CGGradientCreateWithColors(colorSpaceRef, colorArray, (CGFloat[]){
+        0.0f,
+        0.5,// 对应起点颜色位置
+        1.0f// 对应终点颜色位置
+    });
+    
+    // 释放颜色数组
+    CFRelease(colorArray);
+    
+    // 释放起点和终点颜色
+    CGColorRelease(beginColor);
+    CGColorRelease(midColor);
+    CGColorRelease(endColor);
+    
+    // 释放色彩空间
+    CGColorSpaceRelease(colorSpaceRef);
+    
+    CGContextDrawLinearGradient(context, gradientRef, CGPointMake(0.0f, 0.0f), CGPointMake(0.0f, self.frame.size.height ), 0);
+    
+    // 释放渐变对象
+    CGGradientRelease(gradientRef);
 }
 
 @end

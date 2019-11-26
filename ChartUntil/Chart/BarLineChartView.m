@@ -44,11 +44,24 @@
 }
 
 - (void)scrollLineChart:(UIPanGestureRecognizer *)panGes{
-    
+    CGPoint curP=[panGes translationInView:panGes.view];
+
+    [CATransaction begin];
+    [CATransaction setDisableActions:YES];
+    self.lineChart.transform = CATransform3DTranslate(self.lineChart.transform, curP.x, 0, 0);
+    [CATransaction commit];
+   
+    [panGes setTranslation:CGPointZero inView:panGes.view];
 }
 
 - (void)scaleLineChart:(UIPinchGestureRecognizer *)pinGes{
-    
+    if (pinGes.state == UIGestureRecognizerStateBegan || pinGes.state == UIGestureRecognizerStateChanged) {
+        [CATransaction begin];
+        [CATransaction setDisableActions:YES];
+        self.lineChart.transform = CATransform3DScale(self.lineChart.transform, pinGes.scale, 1, 1);
+        [CATransaction commit];
+        pinGes.scale = 1;
+    }
 }
 
 #pragma mark --- stroked

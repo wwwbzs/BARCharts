@@ -61,6 +61,7 @@
         [self addSublayer:layer];
         [self.yLayers addObject:layer];
     }
+    self.masksToBounds = YES;
     self.lineChart.frame = self.bounds;
     [self.lineChart strokeChart];
     [self addSublayer:self.lineChart];

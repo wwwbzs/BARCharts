@@ -28,7 +28,7 @@
     lineChart.dataSource = self;
     BarLineChartData *data = [[BarLineChartData alloc] init];
     NSArray *dataArray1 = @[@10,@20,@30,@40,@50,@60,@70,@80,@90,@100];
-    NSArray *dataArray2 = @[@10,@28,@60,@70,@90,@20,@40,@31,@90,@100];
+    NSArray *dataArray2 = @[@100,@28,@60,@70,@110,@20,@40,@31,@90,@100];
     data.getData = ^BarLineChartDataItem * _Nonnull(NSUInteger index) {
         return [BarLineChartDataItem dataIteminX:[dataArray1[index] floatValue] WithY:[dataArray2[index] floatValue]];
     };
