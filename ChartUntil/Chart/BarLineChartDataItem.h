@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "BarChartUntil.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -20,6 +21,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,readonly) CGFloat y; // should be within the y range
 @property (nonatomic,readonly) CGFloat x;
 @property (nonatomic,readonly) CGPoint point;
+@property (nonatomic,strong) BarChartUntil *until;
+
+- (void)changeIteminX:(CGFloat)x WithY:(CGFloat)y;
 
 //@property (readonly) CGFloat rawY; // this is the raw value, used for point label.
 

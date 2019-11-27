@@ -9,6 +9,7 @@
 #import "BarLineChart.h"
 #import <UIKit/UIKit.h>
 
+
 @interface BarLineChart ()
 
 //@property (nonatomic, strong) NSMutableArray *chartPath;
@@ -19,6 +20,16 @@
 @end
 
 @implementation BarLineChart
+
+- (instancetype)init{
+    self = [super init];
+    if (self) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleSleepScale:) name:@"kNotifySleepViewSacleChange" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleSleepScroller:) name:@"kNotifySleepViewScrollerChange" object:nil];
+        self.scale = 1.0;
+    }
+    return self;
+}
 
 - (void)strokeChart{
     self.lineGradientLayer.frame = self.bounds;
@@ -36,7 +47,8 @@
     for (int i = 0; i < num-1; i++) {
         CGPoint p1 = self.chartData.getData(i).point;
         CGPoint p2 = self.chartData.getData(i+1).point;
-        NSLog(@"+++++++%@",[NSValue valueWithCGPoint:p1]);
+//        NSLog(@"+++++++%@",[NSValue valueWithCGPoint:p1]);
+        NSLog(@"-------%@---------%f",self.chartData.getData(i),self.chartData.getData(i).x);
         CGPoint midPoint = [BarLineChart midPointBetweenPoint1:p1 andPoint2:p2];
         [self.bezierPath addQuadCurveToPoint:midPoint controlPoint:[BarLineChart controlPointBetweenPoint1:midPoint andPoint2:p1]];
         [self.bezierPath addQuadCurveToPoint:p2 controlPoint:[BarLineChart controlPointBetweenPoint1:midPoint andPoint2:p2]];
@@ -160,6 +172,55 @@
     
     // 释放渐变对象
     CGGradientRelease(gradientRef);
+}
+
+#pragma mark --analysisReportvcDelegate
+// 缩放手势回调
+-(void)handleSleepScale:(NSNotification *)notification
+{
+    UIPinchGestureRecognizer *pinGes = (UIPinchGestureRecognizer *)notification.object;
+    if(pinGes.state == UIGestureRecognizerStateChanged)
+    {
+        self.scale = pinGes.scale*self.scale;
+        if (self.scale<0.5) {
+            return;
+        }
+        if (self.scale > 5   ) {
+            return;
+        }
+        if (pinGes.numberOfTouches == 2) {
+            CGPoint p1 = [pinGes locationOfTouch:0 inView:pinGes.view];
+            CGPoint p2 = [pinGes locationOfTouch:1 inView:pinGes.view];
+            if (p1.x<0||p2.x<0||p1.y<0||p2.y<0||p1.x>pinGes.view.frame.size.width||p2.x>pinGes.view.frame.size.width||p1.y>pinGes.view.frame.size.height||p2.y>pinGes.view.frame.size.height) {
+                return;
+            }
+            CGFloat centerX = (p1.x + p2.x)/2;
+            [self.until updataCoordForValue:centerX scale:self.scale];
+            [self strokeChart];
+            pinGes.scale = 1;
+        }
+    }
+    
+}
+
+// 缩放手势回调
+-(void)handleSleepScroller:(NSNotification *)notification
+{
+    UIPanGestureRecognizer *panGes = (UIPanGestureRecognizer *)notification.object;
+    if(panGes.state == UIGestureRecognizerStateChanged)
+    {
+        if (panGes.numberOfTouches == 1) {
+            CGPoint curP=[panGes translationInView:panGes.view];
+            CGPoint p1 = [panGes locationOfTouch:0 inView:panGes.view];
+            if (p1.x<0||p1.y<0||p1.x>panGes.view.frame.size.width||p1.y>panGes.view.frame.size.height) {
+                return;
+            }
+            [self.until updataCoordDelet:curP.x];
+            [self strokeChart];
+            [panGes setTranslation:CGPointZero inView:panGes.view];
+        }
+        
+    }
 }
 
 @end

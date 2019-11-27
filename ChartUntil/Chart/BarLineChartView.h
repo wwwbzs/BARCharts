@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "BarLineChart.h"
+#import "BarChartUntil.h"
 
 
 NS_ASSUME_NONNULL_BEGIN
@@ -22,6 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UIColor *xColor;
 @property (nonatomic, strong) UIColor *yColor;
 @property (nonatomic, copy) NSArray <BarLineChartDataItem*>*dataSource;
+@property (nonatomic, strong) BarChartUntil *until;
 
 - (void)strokedLayer;
 

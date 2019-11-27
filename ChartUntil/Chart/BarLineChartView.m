@@ -44,6 +44,9 @@
 }
 
 - (void)scrollLineChart:(UIPanGestureRecognizer *)panGes{
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"kNotifySleepViewScrollerChange" object:panGes];
+    return;
     CGPoint curP=[panGes translationInView:panGes.view];
 
     [CATransaction begin];
@@ -55,25 +58,30 @@
 }
 
 - (void)scaleLineChart:(UIPinchGestureRecognizer *)pinGes{
-    if (pinGes.state == UIGestureRecognizerStateBegan || pinGes.state == UIGestureRecognizerStateChanged) {
-        [CATransaction begin];
-        [CATransaction setDisableActions:YES];
-        self.lineChart.transform = CATransform3DScale(self.lineChart.transform, pinGes.scale, 1, 1);
-        [CATransaction commit];
-        pinGes.scale = 1;
-    }
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"kNotifySleepViewSacleChange" object:pinGes];
+    pinGes.scale = 1.0;
+//    if (pinGes.state == UIGestureRecognizerStateBegan || pinGes.state == UIGestureRecognizerStateChanged) {
+//        [CATransaction begin];
+//        [CATransaction setDisableActions:YES];
+//        self.lineChart.transform = CATransform3DScale(self.lineChart.transform, pinGes.scale, 1, 1);
+//        [CATransaction commit];
+//        pinGes.scale = 1;
+//    }
 }
 
 #pragma mark --- stroked
 
 - (void)strokedLayer{
     self.lineChart = [BarLineChart layer];
+    self.lineChart.until = self.until;
     self.lineChart.dataSource = self;
     __weak BarLineChartView *weakSelf = self;
     self.lineChart.chartData = [[BarLineChartData alloc] init];
     self.lineChart.chartData.getData = ^BarLineChartDataItem * _Nonnull(NSUInteger index) {
+        weakSelf.dataSource[index].until = weakSelf.until;
         return weakSelf.dataSource[index];
     };
+    
     self.gridLayer = [BarGridLayer layer];
     CGFloat width = self.bounds.size.width - _left - _right;
     CGFloat height = self.bounds.size.height - _top - _bottom;

@@ -38,10 +38,20 @@
     if (self) {
         self.y = y;
         self.x = x;
-        self.point = CGPointMake(x, y);
+        self.point = CGPointMake([self.until coordinateForValue:x], y);
     }
 
     return self;
+}
+
+- (void)changeIteminX:(CGFloat)x WithY:(CGFloat)y{
+    self.x = x;
+    self.y = y;
+    self.point = CGPointMake([self.until coordinateForValue:x], y);
+}
+
+- (CGPoint)point{
+    return CGPointMake([self.until coordinateForValue:self.x], self.y);
 }
 
 @end

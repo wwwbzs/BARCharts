@@ -9,6 +9,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "BarLineChartData.h"
 #import "BarLineChartDataItem.h"
+#import "BarChartUntil.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -29,6 +30,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nullable, copy) NSArray *colors;
 
 @property (nonatomic, weak) id<BarLineChartDataSource>dataSource;
+@property (nonatomic, strong) UIScrollView *scrollView;
+
+@property (nonatomic, assign) CGFloat scale;
+@property (nonatomic, strong) BarChartUntil *until;
 
 - (void)strokeChart;
 
